@@ -1,0 +1,64 @@
+{% extends 'admin-main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'ngoDashboard' %}">Home</a></li>
+                <li class="breadcrumb-item active">Add Project</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <!-- Projects Card -->
+                    <div class="col-xxl-4 col-xl-12">
+
+                        <div class="card info-card customers-card">
+                            <a href="{{request.META.HTTP_REFERER}}">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 32 32">
+                                    <title>arrow-left</title>
+                                    <path
+                                        d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <h3>Back</h3>
+
+                            <div class="card-body">
+                                <form class="pt-3" action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <p class="text-dark">Are you sure you want to delete <span class="fw-bold">{{obj}}</span> ?</p>                                       
+                                       
+                                    </div>
+                                    <button class="btn btn-primary form-control" type="submit" value="Confirm">Delete</button>                       
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End Projects Card -->
+            </div>
+        </div><!-- End Left side columns -->
+
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+{% endblock %}

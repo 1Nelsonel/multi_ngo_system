@@ -1,0 +1,80 @@
+{% extends 'admin-main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'ngoDashboard' %}">Home</a></li>
+                <li class="breadcrumb-item active">Add Project</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- Projects Card -->
+                    <div class="col-xxl-4 col-xl-12">
+                        {% for project in allprojects %}
+                        <div class="card info-card customers-card">
+
+                            <div class="card-body">
+                                <div class="container p-3">
+                                    <div>
+                                        <h2 class="text-primary fw-bold">
+                                            {% if project.user == request.user %}
+                                            <a href="{% url 'updateproject' project.id %}">{{project.name}}</a>
+                                            {% else %}
+                                            <h2>{{project.name}}</h2>
+                                            {% endif %}
+                                        </h2>
+                                        <span>{{project.created|timesince}} ago</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div>
+                                                <img src="{{ project.image.url }}" alt="" width="300" height="200">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div>
+                                                <p>{{project.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              <div class="row">
+                                {% if project.user == request.user %}
+                                  <div class="col-sm-6">
+                                    <a href="{% url 'updateproject' project.id %}" class="btn btn-primary btn-sm" type="submit">Update Project</a>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <a href="{% url 'delete' project.id %}" class="btn btn-danger btn-sm" type="submit">Delete Project</a>
+                                  </div>
+                                  {% endif %}
+                              </div>
+                            </div>
+                            
+                        </div>
+                        
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- End Projects Card -->
+            </div>
+        </div>
+        <!-- End Left side columns -->
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+{% endblock %}
