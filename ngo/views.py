@@ -12,7 +12,8 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 def home(request):
-    context = {}
+    projects = Project.objects.all()
+    context = {'projects': projects}
     return render(request, 'ngo/home.html', context)
  
 def ngoDashboard(request):
