@@ -105,6 +105,15 @@ def viewEvents(request):
     return render(request, 'ngo/events.html', context)
 
 def updateEvent(request, pk):
+    """
+    If the request method is POST, then update the event with the new data, otherwise, render the form
+    with the existing data
+    
+    :param request: The request object is the first parameter to the view. It contains the request data,
+    such as the HTTP method, the HTTP headers, the raw HTTP request, and so on
+    :param pk: primary key of the event
+    :return: the rendered template.
+    """
     event = Evente.objects.get(id=pk)
     
     form = EventForm(instance=event)
