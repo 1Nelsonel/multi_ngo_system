@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+ <!-- ################# Events Start Here#######################--->
+ <section class="events">
+    <div class="container">
+        <div class="session-title row">
+            <h2>Projects</h2>
+            <p>We are a non-profital & Charity raising money for child education</p> 
+        </div>
+        <div class="event-ro row justify-content-center">
+            
+            <div class="col-sm-6 align-items-stretch ">
+                <div class="event-box ">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label" for="">Name</label>
+                            <input class="form-control" name="name" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="">Email</label>
+                            <input class="form-control" name="email" type="email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="">Mobile</label>
+                            <input class="form-control" name="email" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <a class="btn btn-primary" type="submit" href="#">Submit</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+                      
+        </div>
+    </div>
+</section>  
+
+
+{% endblock %}

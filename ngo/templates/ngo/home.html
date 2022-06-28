@@ -83,28 +83,41 @@
         </div>
         <div class="image-part col-md-6">
             <div class="about-quick-box row">
+                
                 <div class="col-md-6">
                     <div class="about-qcard">
-                       <i class="fas fa-user"></i>
-                        <p>Becom a Volunteer</p>
+                        <a href="{% url 'volunteer' %}">
+                            <i class="fas fa-user"></i>
+                            <p>Becom a Volunteer</p>
+                        </a>
+                       
                     </div>
                 </div>
                  <div class="col-md-6">
                     <div class="about-qcard ">
-                       <i class="fas fa-search-dollar red"></i>
-                        <p>Quick Fundrais</p>
+                        <a href="{% url 'eventMain' %}">
+                            <i class="fa fa-calendar red" aria-hidden="true"></i>
+                            <p>Events</p>
+                        </a>
+                       
                     </div>
                 </div>
                  <div class="col-md-6">
                     <div class="about-qcard ">
-                       <i class="fas fa-donate yell"></i>
-                        <p>Giv Donation</p>
+                        <a href="{% url 'projectMain' %}">
+                            <i class="fas fa-project-diagram"></i>
+                            <p>Projects</p>
+                        </a>
+                       
                     </div>
                 </div>
                  <div class="col-md-6">
                     <div class="about-qcard ">
-                       <i class="fas fa-hands-helping blu"></i>
-                        <p>Help Someone</p>
+                        <a href="#">
+                            <i class="fas fa-hands-helping blu"></i>
+                            <p>Donations</p>
+                        </a>
+                       
                     </div>
                 </div>
             </div>
@@ -139,33 +152,6 @@
       </div>
   </div>
 </section>   
-
-
-
- <!-- ################# Events Start Here#######################--->
-<section class="events">
-    <div class="container">
-        <div class="session-title row">
-            <h2>Projects</h2>
-            <p>We are a non-profital & Charity raising money for child education</p> 
-        </div>
-        <div class="event-ro row">
-            {% for project in projects %}
-            <div class="col-md-4 col-sm-6 align-items-stretch">
-                <div class="event-box card">
-                    <img src="{{project.image.url}}" width="100%" height="250" alt="">
-                    <h4>{{project.name}}</h4>
-                    
-                    <p class="raises"><span>{{project.user}}</span>  </p>
-                    <p class="desic">{{project.description |truncatechars:200}}</p>
-                    <button class="btn btn-success btn-sm">Donate Now</button>
-                </div>
-            </div>
-            {% endfor %}           
-        </div>
-    </div>
-</section>   
-
 
 
 

@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+ <!-- ################# Events Start Here#######################--->
+ <section class="events">
+    <div class="container">
+        <div class="session-title row">
+            <h2>Projects</h2>
+            <p>We are a non-profital & Charity raising money for child education</p> 
+        </div>
+        <div class="event-ro row">
+            {% for project in projects %}
+            <div class="col-md-4 col-sm-6 align-items-stretch">
+                <div class="event-box card">
+                    <img src="{{project.image.url}}" width="100%" height="250" alt="">
+                    <h4>{{project.name}}</h4>
+                    
+                    <p class="raises"><span>{{project.user}}</span>  </p>
+                    <p class="desic">{{project.description |truncatechars:200}}</p>
+                    <button class="btn btn-success btn-sm">
+                        <a href="{% url 'projectMainsingle' project.id %}">View</a>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}           
+        </div>
+    </div>
+</section>  
+
+
+{% endblock %}

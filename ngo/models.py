@@ -15,6 +15,23 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name[0:50] 
+
+class Volunteer(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(null=True)
+    mobile = models.CharField(max_length=20, null=True)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.name[0:50] 
+
+
+
         
 class Evente(models.Model):
     name = models.CharField(max_length=255)

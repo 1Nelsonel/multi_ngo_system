@@ -12,8 +12,7 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 def home(request):
-    projects = Project.objects.all()
-    context = {'projects': projects}
+    context = {}
     return render(request, 'ngo/home.html', context)
  
 def ngoDashboard(request):
@@ -105,15 +104,6 @@ def viewEvents(request):
     return render(request, 'ngo/events.html', context)
 
 def updateEvent(request, pk):
-    """
-    If the request method is POST, then update the event with the new data, otherwise, render the form
-    with the existing data
-    
-    :param request: The request object is the first parameter to the view. It contains the request data,
-    such as the HTTP method, the HTTP headers, the raw HTTP request, and so on
-    :param pk: primary key of the event
-    :return: the rendered template.
-    """
     event = Evente.objects.get(id=pk)
     
     form = EventForm(instance=event)
@@ -151,5 +141,37 @@ def deleteProject(request, pk):
     context = {'obj': evente}
     return render(request, 'ngo/delete-project.html', context)
 
+def projectMain(request):
+    projects = Project.objects.all()
+    context = {'projects': projects}
+    return render(request, 'ngo/project-main.html', context)
 
+def projectMainsingle(request, pk):
+    project = Project.objects.get(id=pk)
+    context = {'project': project}
+    return render(request, 'ngo/project-main-single.html', context)
 
+def eventMain(request):
+    events = Evente.objects.all()
+    context = {'events': events}
+    return render(request, 'ngo/event-main.html', context)
+
+def eventMainsingle(request, pk):
+    event = Evente.objects.get(id=pk)
+    context = {'event': event}
+    return render(request, 'ngo/event-main-single.html', context)
+
+def volunteer(request):
+    context = {}
+    return render(request, 'ngo/volunteer.html', context)
+
+def volunteerProject(request):
+    projects = Project.objects.all()
+    context = {'projects': projects}
+    return render(request, 'ngo/volunter-project.html', context)
+
+def volunteerProjectjoin(request, pk):
+    project = Project.objects.get(id=pk)
+    projects = Project.objects.all()
+    context = {'projects': projects, 'project': project}
+    return render(request, 'ngo/volunter-project-join.html', context)

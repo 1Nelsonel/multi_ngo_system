@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+ <!-- ################# Events Start Here#######################--->
+ <section class="events">
+    <div class="container">
+        <div class="session-title row">
+            <h2>Volunteer</h2>
+            <p>Do you want to become a volunteer?</p> 
+        </div>
+        <div class="event-ro row">
+           
+            <div class="col-sm-5 align-items-stretch">
+                <div class="event-box card bg-success">
+                    <a href="{% url 'volunteerProject' %}">
+                        <h4 class="mt-3">Project</h4>
+                        <p class="mb-3">Volunteer in a project</p>
+                    </a>                    
+                </div>
+            </div>
+            <div class="col-sm-5 align-items-stretch">
+                <div class="event-box card bg-success">
+                    <a href="#">
+                        <h4 class="mt-3">Event</h4>
+                        <p class="mb-3">Volunteer in an Event</p>
+                    </a>                
+                </div>
+            </div>
+                   
+        </div>
+    </div>
+</section>  
+
+
+{% endblock %}
