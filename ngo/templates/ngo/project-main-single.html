@@ -26,7 +26,17 @@
                     
                     <p class="raises"><span>{{project.user}}</span>  </p>
                     <p class="desic">{{project.description}}</p>
+
                     
+                </div>
+                <div class="event-box">
+                    <h2>List of volunteers</h2>                   
+                    <ul>
+                        {% for volunteer in project.volunteer_set.all %}
+                        <li>{{volunteer.name}}</li>
+                        {% endfor %}
+                    </ul>
+
                 </div>
             </div>
                    

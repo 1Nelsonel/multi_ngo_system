@@ -1,9 +1,11 @@
+from os import name
+from tokenize import Name
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import Evente, Project, User
+from .models import Evente, Project, User, Volunteer
 from .forms import ProjectForm, EventForm
 import datetime
 
@@ -148,7 +150,8 @@ def projectMain(request):
 
 def projectMainsingle(request, pk):
     project = Project.objects.get(id=pk)
-    context = {'project': project}
+    volunteers = Volunteer.objects.all()
+    context = {'project': project, 'volunteers': volunteers}
     return render(request, 'ngo/project-main-single.html', context)
 
 def eventMain(request):
@@ -172,6 +175,16 @@ def volunteerProject(request):
 
 def volunteerProjectjoin(request, pk):
     project = Project.objects.get(id=pk)
-    projects = Project.objects.all()
-    context = {'projects': projects, 'project': project}
+    volunteer = Volunteer.objects.all()
+
+    if request.method == 'POST':
+        volunteer= Volunteer.objects.create(
+            name = request.POST.get('name'),
+            email = request.POST.get('email'),
+            mobile = request.POST.get('mobile'),
+            project = project
+            
+        )
+
+    context = { 'project': project, 'volunteer': volunteer}
     return render(request, 'ngo/volunter-project-join.html', context)
